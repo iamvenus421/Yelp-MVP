@@ -1,0 +1,38 @@
+<div class = "container">
+<h1><%= @restaurant.name %></h1>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Address</th>
+        <th>Category</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><%= @restaurant.address %></td>
+        <td><%= @restaurant.category %></td>
+      <tr>
+    </tbody>
+  </table>
+</div>
+
+<div class = "form">
+<h2>Leave your comment below</h2>
+  <%= simple_form_for [ @restaurant, @review ] do |f| %>
+    <%= f.input :rating %>
+    <%= f.input :content %>
+    <%= f.submit class:'btn btn-primary' %><%= link_to "Back to list", restaurants_path, class:'btn btn-secondary'%>
+  <% end %>
+</div>
+
+<div class = "comment">
+  <h3>Customer comment on <%= @restaurant.name %></h3>
+  <% @restaurant.reviews.each do |review| %>
+  <%= review.rating %>
+  <%= review.content %>
+  <br>
+  <% end %>
+</div>
